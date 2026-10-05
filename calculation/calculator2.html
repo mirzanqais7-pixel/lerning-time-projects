@@ -1,0 +1,87 @@
+<html>
+    <head>
+      <title>calculator</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          background: #f3f3f3;
+        }
+
+        .calculator {
+          max-width: 350px;
+          margin: 50px auto;
+          padding: 25px;
+          background: #ffffff;
+          border: 2px solid #333333;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        input, button {
+          border: 1px solid #999999;
+          border-radius: 5px;
+          padding: 8px;
+        }
+      </style>  
+      <script>
+    function showError(message) {
+      const status = document.getElementById('status');
+      status.textContent = message;
+      status.style.color = '#a3332a';
+    }
+
+    function clearStatus() {
+      const status = document.getElementById('status');
+      status.textContent = '';
+    }
+
+    function calculateSum() {
+      const d1 = document.getElementById('n1');
+      const d2 = document.getElementById('n2');
+      const val1 = d1.value.trim();
+      const val2 = d2.value.trim();
+
+      if (val1 === '' || val2 === '') {
+        showError('Please enter both numbers.');
+        return;
+      }
+
+      const num1 = Number(val1);
+      const num2 = Number(val2);
+
+      if (!Number.isFinite(num1) || !Number.isFinite(num2)) {
+        showError('Please enter valid numbers only.');
+        return;
+      }
+
+      const sum = num1 + num2;
+      document.getElementById('sum').value = sum;
+      clearStatus();
+    }
+      </script>         
+    </head>
+    <body>
+        <div class="calculator">
+            <div style="text-align: center;">
+                 <div style="padding-top: 5%;">
+                <div><label for="">enter No:1</label></div>
+                <div><input type="number" id="n1"></div>    
+                </div>
+                <div style="padding-top: 5%;">
+                    <div><label for="">enter No:2</label></div>
+                    <div><input type="number" id="n2"></div>
+                </div>
+                <div style="padding-top: 5%;">
+                    <div><button onclick="calculateSum()">calculate</button></div>
+                </div>
+                <div style="padding-top: 5%;">
+                    <div><label for="">sum:</label></div>
+                    <div><input type="number" id="sum" readonly></div>
+                </div>
+                <p id="status" role="status" aria-live="polite"></p>
+            </div>
+           
+        </div>
+    </body>
+  
+</html>
